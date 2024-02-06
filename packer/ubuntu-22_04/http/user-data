@@ -1,0 +1,46 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  refresh-installer:
+      update: false
+  keyboard:
+    layout: us
+  ssh:
+    install-server: true
+    allow-pw: true
+    disable_root: true
+    ssh_quiet_keygen: true
+    allow_public_ssh_keys: true
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens18:
+          dhcp4: no
+          addresses: [192.168.1.246/24]
+          gateway4: 192.168.1.1
+          nameservers:
+            addresses: [192.168.1.1]
+  user-data:
+    package_upgrade: true
+    timezone: Europe/Athens
+    ssh_pwauth: true
+    users:
+      - name: admin
+        groups: [adm, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        passwd: '$6$dHMEctI4H$ummFt4HSjB1hRFgR10R3bxSLz/h6BO.tjoAEHFDkO2qLRmZhm2Guw9LKoj5mtinAYNT3ankypAobyErJ4haIe/'
+  packages:
+    - qemu-guest-agent
+    - sudo
+    - vim
+    - zip
+    - unzip
