@@ -104,14 +104,16 @@ build {
     inline = ["sudo cp /tmp/99-pve.cfg /etc/cloud/cloud.cfg.d/99-pve.cfg"]
   }
 
+  # Disable swap
   provisioner "shell" {
     inline = [
       "sudo swapoff -a",
-      // "sudo sed -i '/ swap / s/^/#/' /etc/fstab"
       "sudo sed -i '/ swap / s/^\\(.*\\)$/#\\1/g' /etc/fstab"
+      // "sudo sed -i '/ swap / s/^/#/' /etc/fstab"
     ]
   }
 
+  # Add kernel parameters
   provisioner "shell" {
     inline = [
       "sudo tee /etc/modules-load.d/containerd.conf <<EOF",
@@ -123,6 +125,7 @@ build {
     ]
   }
 
+  # Configure Kubernetes related kernel parameters
   provisioner "shell" {
     inline = [
       "sudo tee /etc/sysctl.d/kubernetes.conf <<EOF",
@@ -134,7 +137,7 @@ build {
     ]
   }
 
-
+  # Install containerd & docker, also configure containerd runtime to use systemd as cgroup
   provisioner "shell" {
     inline = [
       "sudo apt-get remove -y needrestart", # TODO, needs to be revised with `DEBIAN_FRONTEND=noninteractive` or other envs
@@ -154,6 +157,7 @@ build {
     ]
   }
 
+  # Install k8s stuff (kubectl, kubeadm, kubelet) to be ready for provisioning a Kubernetes cluster
   provisioner "shell" {
     inline = [
       "curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg",

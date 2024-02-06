@@ -4,40 +4,40 @@ source "proxmox-iso" "ubuntu-22_04" {
   token                     = "${var.proxmox_api_token_secret}"
   insecure_skip_tls_verify  = true
 
-  node                      = "proxmox-01"
-  vm_id                     = "90101"
-  vm_name                   = "ubuntu-tmpl-01"
-  template_description      = "A minimal Ubuntu 22.04 template with cloud-init."
+  node                 = "proxmox-01"
+  vm_id                = "90101"
+  vm_name              = "ubuntu-tmpl-01"
+  template_description = "A minimal Ubuntu 22.04 template with cloud-init."
 
-  iso_file                  = "local:iso/ubuntu-22.04.3-live-server-amd64.iso"
-  iso_storage_pool          = "local"
-  unmount_iso               = true
-  qemu_agent                = true
+  iso_file         = "local:iso/ubuntu-22.04.3-live-server-amd64.iso"
+  iso_storage_pool = "local"
+  unmount_iso      = true
+  qemu_agent       = true
 
-  scsi_controller           = "virtio-scsi-pci"
+  scsi_controller = "virtio-scsi-pci"
 
-  cores                     = "1"
-  sockets                   = "1"
-  memory                    = "2048"
+  cores   = "1"
+  sockets = "1"
+  memory  = "2048"
 
-  cloud_init                = true
-  cloud_init_storage_pool   = "local-lvm"
+  cloud_init              = true
+  cloud_init_storage_pool = "local-lvm"
 
   vga {
-    type                    = "virtio"
+    type = "virtio"
   }
 
   disks {
-    disk_size               = "20G"
-    format                  = "raw"
-    storage_pool            = "local-lvm"
-    type                    = "virtio"
+    disk_size    = "20G"
+    format       = "raw"
+    storage_pool = "local-lvm"
+    type         = "virtio"
   }
 
   network_adapters {
-    model                   = "virtio"
-    bridge                  = "vmbr0"
-    firewall                = "false"
+    model    = "virtio"
+    bridge   = "vmbr0"
+    firewall = "false"
   }
 
   boot_command = [
@@ -49,27 +49,27 @@ source "proxmox-iso" "ubuntu-22_04" {
     "<f10><wait>"
   ]
 
-  boot                      = "c"
-  boot_wait                 = "6s"
-  communicator              = "ssh"
+  boot         = "c"
+  boot_wait    = "6s"
+  communicator = "ssh"
 
-  http_directory            = "ubuntu-22_04/http"
-  http_bind_address         = "${var.http_server_address}"
+  http_directory    = "ubuntu-22_04/http"
+  http_bind_address = "${var.http_server_address}"
 
-  ssh_username              = "${var.ssh_username}"
-  ssh_password              = "${var.ssh_password}"
+  ssh_username  = "${var.ssh_username}"
+  ssh_password  = "${var.ssh_password}"
 
   # Raise the timeout, when installation takes longer
-  ssh_timeout               = "30m"
-  ssh_pty                   = true
-  ssh_handshake_attempts    = 15
+  ssh_timeout            = "30m"
+  ssh_pty                = true
+  ssh_handshake_attempts = 15
 }
 
 build {
 
-  name    = "pkr-ubuntu-jammy-1"
+  name = "pkr-ubuntu-jammy-1"
   sources = [
-      "source.proxmox-iso.ubuntu-22_04"
+    "source.proxmox-iso.ubuntu-22_04"
   ]
 
   # Waiting for Cloud-Init to finish
