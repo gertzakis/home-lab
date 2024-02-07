@@ -108,8 +108,7 @@ build {
   provisioner "shell" {
     inline = [
       "sudo swapoff -a",
-      "sudo sed -i '/ swap / s/^\\(.*\\)$/#\\1/g' /etc/fstab"
-      // "sudo sed -i '/ swap / s/^/#/' /etc/fstab"
+      "sudo sed -i '/swap/ s/^/#/' /etc/fstab"
     ]
   }
 
