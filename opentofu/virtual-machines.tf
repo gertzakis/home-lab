@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   # VM General Settings
   target_node = "proxmox-01"
   vmid        = "16${count.index}"
-  name        = "k8s-master-${count.index}"
+  name        = "k8s-master-0${count.index + 1}"
   desc        = "Kubernetes master node ${count.index} \n\n IP `192.168.1.16${count.index}`"
   tags        = "k8s,master" # comma seperated format
 
@@ -65,8 +65,8 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
 
   # VM General Settings
   target_node = "proxmox-01"
-  vmid        = "21${count.index}"
-  name        = "k8s-worker-${count.index}"
+  vmid        = "16${count.index + 3}"
+  name        = "k8s-worker-0${count.index + 1}"
   desc        = "Kubernetes worker node ${count.index} \n\n IP `192.168.1.16${count.index + 3}`"
   tags        = "k8s,worker" # comma seperated format
 
