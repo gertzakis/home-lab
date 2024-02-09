@@ -14,18 +14,6 @@ terraform {
   }
 }
 
-variable "proxmox_api_url" {
-  type = string
-}
-
-variable "proxmox_api_token_id" {
-  type = string
-}
-
-variable "proxmox_api_token_secret" {
-  type = string
-}
-
 provider "proxmox" {
 
   pm_api_url          = var.proxmox_api_url
@@ -35,3 +23,32 @@ provider "proxmox" {
   pm_tls_insecure = true
 
 }
+
+variable "proxmox_api_url" {
+  type = string
+}
+
+variable "proxmox_api_token_id" {
+  type = string
+  sensitive = true
+}
+
+variable "proxmox_api_token_secret" {
+  type = string
+  sensitive = true
+}
+
+variable "vm_username" {
+  type = string
+}
+
+variable "vm_password" {
+  type = string
+  sensitive = true
+}
+
+# TODO, check for change in dict to iterate in creation
+# variable "proxmox_vms" {
+#   description = "Proxmox VMs"
+#   type        = map(any)
+# }
