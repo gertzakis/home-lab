@@ -18,12 +18,12 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   agent = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
-  cores   = 1
   sockets = 1
+  cores   = 2
   cpu     = "host"
 
   # VM Memory Settings
-  memory = 1024
+  memory = 4096
 
   # VM Disk Settings
   cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
@@ -75,12 +75,12 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   agent = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
-  cores   = 1
   sockets = 1
+  cores   = 2
   cpu     = "host"
 
   # VM Memory Settings
-  memory = 1024
+  memory = 4096
 
   # VM Disk Settings
   cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
