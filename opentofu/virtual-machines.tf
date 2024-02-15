@@ -61,7 +61,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
 
 resource "proxmox_vm_qemu" "kubernetes-workers" {
   # Create Kubernetes Worker nodes
-  count = 1
+  count = 2
 
   # VM General Settings
   target_node = "proxmox-01"
