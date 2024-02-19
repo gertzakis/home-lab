@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "home-lab"
+version = "0.1.0"
+description = "gertzakis' personal home lab"
+authors = ["Gerasimos Tzakis <gertzakis@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+yamllint = "^1.35.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
