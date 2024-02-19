@@ -10,12 +10,13 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   target_node = "proxmox-01"
   vmid        = "16${count.index}"
   name        = "k8s-master-0${count.index + 1}"
-  desc        = "Kubernetes master node ${count.index} \n\n IP `192.168.1.16${count.index}`"
-  tags        = "k8s,master" # comma seperated format
+  desc        = "Kubernetes master node ${count.index + 1} \n\n IP `192.168.1.16${count.index}`"
+  tags        = "k8s;master" # comma seperated format
 
   # VM OS Settings
-  clone = "ubuntu-k8s-tmpl-01"
-  agent = 1 # Installing agent through cloud-init
+  clone   = "ubuntu-k8s-tmpl-01"
+  qemu_os = "other"
+  agent   = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
   sockets = 1
@@ -67,12 +68,13 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   target_node = "proxmox-01"
   vmid        = "16${count.index + 3}"
   name        = "k8s-worker-0${count.index + 1}"
-  desc        = "Kubernetes worker node ${count.index} \n\n IP `192.168.1.16${count.index + 3}`"
-  tags        = "k8s,worker" # comma seperated format
+  desc        = "Kubernetes worker node ${count.index + 1} \n\n IP `192.168.1.16${count.index + 3}`"
+  tags        = "k8s;worker" # comma seperated format
 
   # VM OS Settings
-  clone = "ubuntu-k8s-tmpl-01"
-  agent = 1 # Installing agent through cloud-init
+  clone   = "ubuntu-k8s-tmpl-01"
+  qemu_os = "other"
+  agent   = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
   sockets = 1
@@ -80,7 +82,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   cpu     = "host"
 
   # VM Memory Settings
-  memory = 4096
+  memory = 8192
 
   # VM Disk Settings
   cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
