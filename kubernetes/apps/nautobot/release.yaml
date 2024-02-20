@@ -13,6 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: nautobot
+        namespace: flux-system
   interval: 50m
   install:
     remediation:

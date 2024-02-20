@@ -4,6 +4,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: nautobot
+  namespace: flux-system
 spec:
   interval: 5m
   url: https://nautobot.github.io/helm-charts/
