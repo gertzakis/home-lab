@@ -1,0 +1,39 @@
+# kubernetes/cluster/home-lab/flux-system/infra.yaml
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-cilium
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./kubernetes/infra/cilium/
+  prune: true
+  wait: true
+  timeout: 5m0s
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: cilium
+      namespace: kube-system
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-networking
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: infra-cilium
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./kubernetes/infra/networking/
+  prune: true
+  wait: true
+  timeout: 5m0s

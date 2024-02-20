@@ -1,3 +1,4 @@
+# kubernetes/infra/networking/l2-policy.yaml
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
 metadata:

@@ -6,5 +6,5 @@ metadata:
   name: cilium
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 90m0s
   url: https://helm.cilium.io/
