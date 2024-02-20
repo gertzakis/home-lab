@@ -1,4 +1,5 @@
 # kubernetes/infra/networking/lb-ip-pool.yaml
+---
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumLoadBalancerIPPool
 metadata:

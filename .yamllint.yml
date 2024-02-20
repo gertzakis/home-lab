@@ -4,10 +4,16 @@ rules:
   comments: "enable"
   empty-values: "enable"
   indentation:
+    spaces: 2
     indent-sequences: "consistent"
   line-length: "disable"
-  quoted-strings:
-    quote-type: "double"
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+  truthy: disable
 ignore: |
   .venv
   kubernetes/clusters/*/flux-system/
