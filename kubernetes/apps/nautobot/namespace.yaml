@@ -1,0 +1,6 @@
+# kubernetes/apps/nautobot/namespace.yaml
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nautobot

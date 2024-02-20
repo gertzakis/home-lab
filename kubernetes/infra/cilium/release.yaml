@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: cilium
-      # pin version to auto-update to minor releases
+      # pin version to auto-update only minor releases
       version: ">=1.15.1 <1.16.0"
       sourceRef:
         kind: HelmRepository

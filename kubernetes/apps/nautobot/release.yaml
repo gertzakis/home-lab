@@ -1,0 +1,35 @@
+# kubernetes/apps/nautobot/release.yaml
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: nautobot
+  namespace: nautobot
+spec:
+  releaseName: nautobot
+  chart:
+    spec:
+      chart: nautobot
+      sourceRef:
+        kind: HelmRepository
+        name: nautobot
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+  values:
+    postgresql:
+      enabled: true
+      auth:
+        password: "change-me"
+
+    redis:
+      enabled: true
+      auth:
+        password: "change-me"
+
+  # valuesFrom:
+  #   - kind: ConfigMap
+  #     name: nautobot-config
+  #     valuesKey: nautobot_config.py
+  #     targetPath: nautobot.config
