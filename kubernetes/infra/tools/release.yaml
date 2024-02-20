@@ -16,3 +16,6 @@ spec:
         name: metrics-server
         namespace: flux-system
       interval: 1m
+  values:
+    args:
+      - --kubelet-insecure-tls
