@@ -49,6 +49,22 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  path: ./kubernetes/infra/storage/
+  prune: true
+  wait: true
+  timeout: 5m0s
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-tools
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
   path: ./kubernetes/infra/tools/
   prune: true
   wait: true
