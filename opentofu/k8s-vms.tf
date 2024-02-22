@@ -24,7 +24,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   cpu     = "host"
 
   # VM Memory Settings
-  memory = 4096
+  memory = 8192
 
   # VM Disk Settings
   cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
