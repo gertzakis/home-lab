@@ -1,32 +1,33 @@
-# kubernetes/infra/storage/ingress.yaml
+# kubernetes/infra/networking/ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: longhorn-ingress
-  namespace: longhorn-system
+  name: hubble-ui-ingress
+  namespace: kube-system
   annotations:
     # type of authentication
     nginx.ingress.kubernetes.io/auth-type: basic
     # prevent the controller from redirecting (308) to HTTPS
     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
     # name of the secret that contains the user/password definitions
-    nginx.ingress.kubernetes.io/auth-secret: longhorn-basic-auth
+    nginx.ingress.kubernetes.io/auth-secret: hubble-basic-auth
     # message to display with an appropriate context why the authentication is required
     nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required '
     # custom max body size for file uploading like backing image uploading
-    nginx.ingress.kubernetes.io/proxy-body-size: 10000m
+    # nginx.ingress.kubernetes.io/proxy-body-size: 10000m
     # Rewrite the path, we need it cause of multiple sub-path for different ingresses
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # nginx.ingress.kubernetes.io/use-regex: "true"
+    # nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: "hubble.home.lab"
+    http:
       paths:
       - pathType: Prefix
-        path: /longhorn(/|$)(.*)
+        path: /
         backend:
           service:
-            name: longhorn-frontend
+            name: hubble-ui
             port:
               number: 80
