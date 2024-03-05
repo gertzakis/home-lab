@@ -34,7 +34,7 @@ spec:
   valuesFrom:
     - kind: Secret
       name: nautobot-secrets
-      # valuesKey: nautobot_config.py
+      valuesKey: values.yaml
       # targetPath: nautobot.config
 
   # valuesFrom:
