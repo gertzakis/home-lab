@@ -8,3 +8,8 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+
+secretGenerator:
+  - name: nautobot-secrets
+    files:
+      - values.yaml=secrets.yaml
