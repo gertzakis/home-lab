@@ -9,11 +9,17 @@ resources:
   - repository.yaml
   - release.yaml
 
+configMapGenerator:
+  - name: nautobot-values
+    namespace: nautobot
+    files:
+      - values.yaml=values.yaml
+
 secretGenerator:
   - name: nautobot-secrets
     namespace: nautobot
     files:
-      - values.yaml=secrets.yaml
+      - secrets.yaml=secrets.yaml
 
 configurations:
   - kustomizeconfig.yaml
