@@ -14,20 +14,23 @@ spec:
         kind: HelmRepository
         name: nautobot
         namespace: flux-system
+      valuesFiles:
+        - values.yaml
+        - secrets.yaml
   interval: 50m
   install:
     remediation:
       retries: 3
-  values:
-    postgresql:
-      enabled: true
-      auth:
-        password: "change-me"
+  # values:
+  #   postgresql:
+  #     enabled: true
+  #     auth:
+  #       password: "change-me"
 
-    redis:
-      enabled: true
-      auth:
-        password: "change-me"
+  #   redis:
+  #     enabled: true
+  #     auth:
+  #       password: "change-me"
 
   # valuesFrom:
   #   - kind: ConfigMap
