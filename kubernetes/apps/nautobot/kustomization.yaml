@@ -11,5 +11,6 @@ resources:
 
 secretGenerator:
   - name: nautobot-secrets
+    namespace: nautobot
     files:
       - values.yaml=secrets.yaml
