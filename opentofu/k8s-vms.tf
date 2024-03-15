@@ -90,7 +90,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
     virtio {
       virtio0 {
         disk {
-          size    = 30
+          size    = 60
           storage = "local-lvm"
         }
       }
