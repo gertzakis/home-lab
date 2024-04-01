@@ -3,19 +3,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: metrics-server
-  namespace: kube-system
+  name: prometheus-stack
+  namespace: monitoring
 spec:
   interval: 20m
   chart:
     spec:
-      chart: metrics-server
-      version: "3.12.0"
+      chart: kube-prometheus-stack
+      version: "57.x.x"
       sourceRef:
         kind: HelmRepository
-        name: metrics-server
+        name: prometheus-community
         namespace: flux-system
       interval: 10m
-  values:
-    args:
-      - --kubelet-insecure-tls
