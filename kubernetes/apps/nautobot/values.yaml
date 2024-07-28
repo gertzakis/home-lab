@@ -2,7 +2,7 @@
 # Nautobot Server
 nautobot:
   # -- Number of Nautobot server replicas to deploy
-  replicaCount: 1
+  replicaCount: 2
 
 postgresql:
   # -- Enable deployment of the [Bitnami postgresql](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) chart, all other `postgresql.*` parameters will be passed directly to that chart
