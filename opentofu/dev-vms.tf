@@ -11,7 +11,7 @@ resource "proxmox_vm_qemu" "dev-vms" {
   vmid        = "17${count.index}"
   name        = "ubuntu-dev-0${count.index + 1}"
   desc        = "Ubuntu Dev VM ${count.index + 1} \n\n IP `192.168.1.17${count.index}`"
-  tags        = "dev;" # comma seperated format
+  tags        = "dev" # comma seperated format
 
   # VM OS Settings
   clone   = "ubuntu-tmpl-01"
@@ -27,8 +27,20 @@ resource "proxmox_vm_qemu" "dev-vms" {
   memory = 8192
 
   # VM Disk Settings
-  cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
+  # cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
   disks {
+    ide {
+      ide2 {
+        cdrom {
+          passthrough = false
+        }
+      }
+      ide3 {
+        cloudinit {
+          storage = "local-lvm"
+        }
+      }
+    }
     virtio {
       virtio0 {
         disk {
