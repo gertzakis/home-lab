@@ -9,7 +9,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "3.0.1-rc1"
+      version = "3.0.1-rc3"
     }
   }
 }
@@ -29,12 +29,12 @@ variable "proxmox_api_url" {
 }
 
 variable "proxmox_api_token_id" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "proxmox_api_token_secret" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -43,7 +43,7 @@ variable "vm_username" {
 }
 
 variable "vm_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 

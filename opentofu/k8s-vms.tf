@@ -27,8 +27,20 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   memory = 8192
 
   # VM Disk Settings
-  cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
+  # cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
   disks {
+    ide {
+      ide2 {
+        cdrom {
+          passthrough = false
+        }
+      }
+      ide3 {
+        cloudinit {
+          storage = "local-lvm"
+        }
+      }
+    }
     virtio {
       virtio0 {
         disk {
@@ -62,7 +74,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
 
 resource "proxmox_vm_qemu" "kubernetes-workers" {
   # Create Kubernetes Worker nodes
-  count = 2
+  count = 3
 
   # VM General Settings
   target_node = "proxmox-01"
@@ -85,8 +97,20 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   memory = 8192
 
   # VM Disk Settings
-  cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
+  # cloudinit_cdrom_storage = "local-lvm" # needed to load the cloud-init drive
   disks {
+    ide {
+      ide2 {
+        cdrom {
+          passthrough = false
+        }
+      }
+      ide3 {
+        cloudinit {
+          storage = "local-lvm"
+        }
+      }
+    }
     virtio {
       virtio0 {
         disk {
