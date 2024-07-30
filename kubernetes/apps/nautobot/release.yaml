@@ -21,15 +21,6 @@ spec:
   # values:
   #   nautobot:
   #     replicaCount: 1
-  #   postgresql:
-  #     enabled: true
-      # auth:
-      #   password: "change-me"
-
-    # redis:
-    #   enabled: true
-      # auth:
-      #   password: "change-me"
 
   valuesFrom:
     - kind: ConfigMap
@@ -38,7 +29,6 @@ spec:
     - kind: Secret
       name: nautobot-secrets
       valuesKey: secrets.yaml
-      # targetPath: nautobot.config
 
   # valuesFrom:
   #   - kind: ConfigMap
