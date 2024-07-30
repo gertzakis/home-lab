@@ -1,0 +1,12 @@
+# .sops.yaml
+---
+creation_rules:
+  - path_regex: kubernetes/.*secrets.yaml$
+    pgp: >-
+      F942FEAB63BC70D4EB077F7049F29CFCCDBC5E81,
+      0A0CBE761EC356C5231DED073AE17C7FFF265E4C
+  - path_regex: kubernetes/.*.yaml
+    encrypted_regex: ^(data|stringData)$
+    pgp: >-
+      F942FEAB63BC70D4EB077F7049F29CFCCDBC5E81,
+      0A0CBE761EC356C5231DED073AE17C7FFF265E4C
