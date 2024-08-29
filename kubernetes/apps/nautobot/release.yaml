@@ -29,6 +29,10 @@ spec:
     - kind: Secret
       name: nautobot-secrets
       valuesKey: secrets.yaml
+    - kind: ConfigMap
+      name: nautobot-config
+      valuesKey: nautobot_config.py
+      # targetPath: nautobot_config.py
 
   # valuesFrom:
   #   - kind: ConfigMap
