@@ -11,6 +11,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   vmid        = "16${count.index}"
   name        = "k8s-master-0${count.index + 1}"
   desc        = "Kubernetes master node ${count.index + 1} \n\n IP `192.168.1.16${count.index}`"
+  pool        = "k8s-cluster"
   tags        = "k8s;master" # comma seperated format
 
   # VM OS Settings
@@ -81,6 +82,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   vmid        = "16${count.index + 3}"
   name        = "k8s-worker-0${count.index + 1}"
   desc        = "Kubernetes worker node ${count.index + 1} \n\n IP `192.168.1.16${count.index + 3}`"
+  pool        = "k8s-cluster"
   tags        = "k8s;worker" # comma seperated format
 
   # VM OS Settings
