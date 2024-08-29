@@ -1,3 +1,5 @@
+# kubernetes/infra/storage/namespace.yaml
+---
 apiVersion: v1
 kind: Namespace
 metadata:

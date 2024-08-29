@@ -29,13 +29,11 @@ spec:
     - kind: Secret
       name: nautobot-secrets
       valuesKey: secrets.yaml
+    # TODO, FIX
+    # This replaces the whole `nautobot_config.py` file.
+    # Works well with configMapGenerator in kubernetes/apps/nautobot/kustomization.yaml.
+    # Every time a new nautobot_config version is pushed, FluxCD does the job and triggers an update.
     # - kind: ConfigMap
     #   name: nautobot-config
     #   valuesKey: nautobot_config.py
     #   targetPath: nautobot.config
-
-  # valuesFrom:
-  #   - kind: ConfigMap
-  #     name: nautobot-config
-  #     valuesKey: nautobot_config.py
-  #     targetPath: nautobot.config

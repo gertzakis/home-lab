@@ -2,6 +2,7 @@
 extends: "default"
 rules:
   comments: "enable"
+  comments-indentation: "disable"
   empty-values: "enable"
   indentation:
     spaces: 2
@@ -17,3 +18,4 @@ rules:
 ignore: |
   .venv
   kubernetes/clusters/*/flux-system/
+  *secrets.yaml
