@@ -32,7 +32,7 @@ spec:
     - kind: ConfigMap
       name: nautobot-config
       valuesKey: nautobot_config.py
-      # targetPath: nautobot_config.py
+      targetPath: nautobot.config
 
   # valuesFrom:
   #   - kind: ConfigMap
