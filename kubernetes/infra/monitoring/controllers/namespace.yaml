@@ -1,4 +1,4 @@
-# kubernetes/infra/tools/namespace.yaml
+# kubernetes/infra/monitoring/controllers/namespace.yaml
 ---
 apiVersion: v1
 kind: Namespace

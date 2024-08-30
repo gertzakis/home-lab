@@ -75,18 +75,37 @@ spec:
   timeout: 5m0s
 
 ---
-# Infrastructure related tools (eg Kubernetes dashboard, metrics-server, etc)
+# Prometheus Operator with Grafana and relevant services
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infra-tools
+  name: infra-monitoring
   namespace: flux-system
 spec:
   interval: 10m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./kubernetes/infra/tools/
+  path: ./kubernetes/infra/monitoring/controllers/
+  prune: true
+  wait: true
+  timeout: 5m0s
+
+---
+# Monitoring Configurations, extra dashboards, etc
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-monitoring-configs
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: infra-monitoring
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./kubernetes/infra/monitoring/configs/
   prune: true
   wait: true
   timeout: 5m0s
