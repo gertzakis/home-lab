@@ -34,6 +34,40 @@ spec:
         podMonitorSelector:
           matchLabels:
             app.kubernetes.io/component: monitoring
+        # TODO: add additional scrape configs for etcd & Cilium. Probably in a separate file (eg ConfigMap).
+        # First check connectivity for Prometheus targets
+        # More info https://github.com/prometheus-community/helm-charts/blob/750063232eb6570656a32ad001c1d2c6e4d7f5ea/charts/kube-prometheus-stack/values.yaml#L3850
+        # and https://docs.cilium.io/en/stable/observability/metrics/#metrics
+        # Also make sense to check for ready Grafana dashboard in cilium's monitoring example. (needs some digging)
+        # additionalScrapeConfigs:
+          # - job_name: kube-etcd
+          #   kubernetes_sd_configs:
+          #     - role: node
+          #   scheme: https
+          #   tls_config:
+          #     ca_file:   /etc/prometheus/secrets/etcd-client-cert/etcd-ca
+          #     cert_file: /etc/prometheus/secrets/etcd-client-cert/etcd-client
+          #     key_file:  /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
+          #   relabel_configs:
+          #   - action: labelmap
+          #     regex: __meta_kubernetes_node_label_(.+)
+          #   - source_labels: [__address__]
+          #     action: replace
+          #     targetLabel: __address__
+          #     regex: ([^:;]+):(\d+)
+          #     replacement: ${1}:2379
+          #   - source_labels: [__meta_kubernetes_node_name]
+          #     action: keep
+          #     regex: .*mst.*
+          #   - source_labels: [__meta_kubernetes_node_name]
+          #     action: replace
+          #     targetLabel: node
+          #     regex: (.*)
+          #     replacement: ${1}
+          #   metric_relabel_configs:
+          #   - regex: (kubernetes_io_hostname|failure_domain_beta_kubernetes_io_region|beta_kubernetes_io_os|beta_kubernetes_io_arch|beta_kubernetes_io_instance_type|failure_domain_beta_kubernetes_io_zone)
+          #     action: labeldrop
+          # - job_name: cilium
 
     grafana:
       ingress:
