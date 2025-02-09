@@ -22,7 +22,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   # VM CPU Settings
   sockets = 1
   cores   = 2
-  cpu     = "host"
+  cpu_type     = "host"
 
   # VM Memory Settings
   memory = 8192
@@ -54,6 +54,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
 
   # VM Network Settings
   network {
+    id = 0
     bridge = "vmbr0"
     model  = "virtio"
   }
@@ -93,7 +94,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   # VM CPU Settings
   sockets = 1
   cores   = 2
-  cpu     = "host"
+  cpu_type     = "host"
 
   # VM Memory Settings
   memory = 8192
@@ -125,6 +126,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
 
   # VM Network Settings
   network {
+    id = 0
     bridge = "vmbr0"
     model  = "virtio"
   }

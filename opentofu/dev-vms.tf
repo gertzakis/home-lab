@@ -3,9 +3,9 @@
 # Create VMs cloned from a cloud-init template
 
 resource "proxmox_vm_qemu" "dev-vms" {
-  # Create Kubernetes Master nodes
+  # Create Dev nodes
   count = 1
-
+  vm_state = "stopped"
   # VM General Settings
   target_node = "proxmox-01"
   vmid        = "17${count.index}"
@@ -22,7 +22,7 @@ resource "proxmox_vm_qemu" "dev-vms" {
   # VM CPU Settings
   sockets = 1
   cores   = 2
-  cpu     = "host"
+  cpu_type     = "host"
 
   # VM Memory Settings
   memory = 8192
@@ -54,6 +54,7 @@ resource "proxmox_vm_qemu" "dev-vms" {
 
   # VM Network Settings
   network {
+    id = 0
     bridge = "vmbr0"
     model  = "virtio"
   }
