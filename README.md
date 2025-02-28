@@ -7,3 +7,14 @@ This is my personal Home lab. Just a mini PC with some extra RAM that's running 
 I use Packer and OpenTofu to manage the infra (VMs)
 
 The infra though is just a Kubernetes cluster, and you can find the configuration of reasources under `kubernetes` directory. Keep in mind GitOps with `FluxCD` is used to provision anything inside the cluster, and I try to force myself going down that path ;)
+
+## Crypto
+
+In order to store sensitive information in this repo I use [sops](https://github.com/getsops/sops). You can find the public cryptographic key to encrypt under kubernetes/clusters/home-lab/.
+
+Follow the below example when you operate on stdin.
+
+```bash
+sops encrypt --input-type yaml packer/ubuntu-22_04/http/user-data --output-type yaml > packer/ubuntu-22_04/http/user-data.enc
+cat packer/ubuntu-22_04/http/user-data.enc | sops decrypt --input-type yaml --output-type yaml /dev/stdin
+```
