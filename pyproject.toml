@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "home-lab"
 version = "0.1.0"
-description = "gertzakis' personal home lab"
+description = "My personal home lab"
 authors = ["Gerasimos Tzakis <gertzakis@gmail.com>"]
 readme = "README.md"
 
