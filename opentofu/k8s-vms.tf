@@ -2,8 +2,15 @@
 # ---
 # Create VMs cloned from a cloud-init template
 
+# Create a Proxmox pool for Kubernetes VMs
+resource "proxmox_pool" "k8s-cluster" {
+  poolid  = "k8s-cluster"
+  comment = "Kubernetes Cluster VMs"
+}
+
+# Create Kubernetes Master nodes
 resource "proxmox_vm_qemu" "kubernetes-masters" {
-  # Create Kubernetes Master nodes
+  depends_on = [ proxmox_pool.k8s-cluster ]
   count = 1
 
   # VM General Settings
@@ -74,8 +81,9 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   # EOF
 }
 
+# Create Kubernetes Worker nodes
 resource "proxmox_vm_qemu" "kubernetes-workers" {
-  # Create Kubernetes Worker nodes
+  depends_on = [ proxmox_pool.k8s-cluster ]
   count = 3
 
   # VM General Settings
