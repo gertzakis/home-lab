@@ -17,7 +17,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   target_node = "proxmox-01"
   vmid        = "16${count.index}"
   name        = "k8s-master-0${count.index + 1}"
-  desc        = "Kubernetes master node ${count.index + 1} \n\n IP `192.168.1.16${count.index}`"
+  description = "Kubernetes master node ${count.index + 1} \n\n IP `192.168.1.16${count.index}`"
   pool        = "k8s-cluster"
   tags        = "k8s;master" # comma seperated format
 
@@ -27,9 +27,11 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   agent   = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
-  sockets = 1
-  cores   = 2
-  cpu_type     = "host"
+  cpu {
+    sockets = 1
+    cores   = 2
+    type = "host"
+  }
 
   # VM Memory Settings
   memory = 8192
@@ -90,7 +92,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   target_node = "proxmox-01"
   vmid        = "16${count.index + 3}"
   name        = "k8s-worker-0${count.index + 1}"
-  desc        = "Kubernetes worker node ${count.index + 1} \n\n IP `192.168.1.16${count.index + 3}`"
+  description = "Kubernetes worker node ${count.index + 1} \n\n IP `192.168.1.16${count.index + 3}`"
   pool        = "k8s-cluster"
   tags        = "k8s;worker" # comma seperated format
 
@@ -100,9 +102,11 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   agent   = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
-  sockets = 1
-  cores   = 2
-  cpu_type     = "host"
+  cpu {
+    sockets = 1
+    cores   = 2
+    type = "host"
+  }
 
   # VM Memory Settings
   memory = 8192
