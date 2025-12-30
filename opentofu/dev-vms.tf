@@ -10,7 +10,7 @@ resource "proxmox_vm_qemu" "dev-vms" {
   target_node = "proxmox-01"
   vmid        = "17${count.index}"
   name        = "ubuntu-dev-0${count.index + 1}"
-  desc        = "Ubuntu Dev VM ${count.index + 1} \n\n IP `192.168.1.17${count.index}`"
+  description = "Ubuntu Dev VM ${count.index + 1} \n\n IP `192.168.1.17${count.index}`"
   pool        = "dev"
   tags        = "dev" # comma seperated format
 
@@ -20,9 +20,11 @@ resource "proxmox_vm_qemu" "dev-vms" {
   agent   = 1 # Installing agent through cloud-init
 
   # VM CPU Settings
-  sockets = 1
-  cores   = 2
-  cpu_type     = "host"
+  cpu {
+    sockets = 1
+    cores   = 2
+    type = "host"
+  }
 
   # VM Memory Settings
   memory = 8192
