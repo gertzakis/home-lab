@@ -26,4 +26,6 @@ spec:
           enabled: true
           ingressClassName: "nginx"
           hosts:
-            - falcosidekick.home.lab
+            - host: falcosidekick.home.lab
+              paths:
+                - path: /
