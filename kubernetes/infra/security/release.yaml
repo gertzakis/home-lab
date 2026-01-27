@@ -1,0 +1,29 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: falco-release
+  namespace: falco
+spec:
+  interval: 20m
+  chart:
+    spec:
+      chart: falco
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: falcosecurity-repo
+        namespace: falco
+      interval: 10m0s
+
+  values:
+    tty: true
+    falcosidekick:
+      enabled: true
+      webui:
+        enabled: true
+        ingress:
+          enabled: true
+          ingressClassName: "nginx"
+          hosts:
+            - falcosidekick.home.lab
