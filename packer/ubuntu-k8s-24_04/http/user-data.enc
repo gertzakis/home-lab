@@ -1,0 +1,103 @@
+#cloud-config
+autoinstall:
+    version: 1
+    locale: en_US
+    refresh-installer:
+        update: false
+    keyboard:
+        layout: us
+    ssh:
+        install-server: true
+        allow-pw: true
+        disable_root: true
+        ssh_quiet_keygen: true
+        allow_public_ssh_keys: true
+    storage:
+        layout:
+            name: direct
+        swap:
+            size: 0
+    network:
+        network:
+            version: 2
+            ethernets:
+                ens18:
+                    dhcp4: "no"
+                    addresses:
+                        - 192.168.1.249/24
+                    routes:
+                        - to: default
+                          via: 192.168.1.1
+                    nameservers:
+                        addresses:
+                            - 192.168.1.1
+    user-data:
+        package_upgrade: true
+        timezone: Europe/Athens
+        ssh_pwauth: true
+        users:
+            - name: admin
+              groups:
+                - adm
+                - sudo
+              lock-passwd: false
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              shell: /bin/bash
+              passwd: ENC[AES256_GCM,data:q/zih6v89Gz4Rnj/SgjHtSJ7+ulTQEq+UiOXiJdLeYL0k/sXDf3s3I7ttdG2R+D1H2Lvp16RllPw/D8xV/emVVnMZVGt0HoCa8jJ9jQxnSM8MyljQjjANZAOrY4yi+P2ZaN5,iv:aMHbDrut7ht4P2nuwzFLesPNOrmvhUWZ/xaNwSFJnFw=,tag:eIo0Uhe/m+aOCPRzjxTrXA==,type:str]
+    packages:
+        - qemu-guest-agent
+        - sudo
+        - vim
+        - zip
+        - unzip
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2026-04-10T11:19:40Z"
+    mac: ENC[AES256_GCM,data:gw3MAOk0i3usi7Y8MC4Zoeo8D2LaCFt1H9LiotNUIvFgs9hlHH4ePQvsSlowFH4BbasOeBg2IjRa/5IKqs80IToSymkqLcd5UuLYmAIiQFKYVDBlX81wtCkKy2cxEOGEsIun5l9c1cHQSJBbYU1AwBeRVM+IoRptbbj66uFvDms=,iv:Q1Y/8kxoWkoxr1s49VsC7kLUKkvY7AnfVa/xAmWaw6c=,tag:gKSUv3w4hQvJIurR9tjmqQ==,type:str]
+    pgp:
+        - created_at: "2026-04-10T11:19:40Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA8lo+/GG9VzzARAAka1+rHhhHEYaZatNShbI09mdLC3OoPRR73QDmtvoWZAE
+            k9DgLxnBgEFRBpRrFyrgz+fYV+vIW+54xIU9wEZfjUyJVqa3usU7JHfwrGLx21t/
+            DcNCC3jA0+ViM7/u5wJ0Pn4eVQhB+Jb3ID+aUy2/tuYxytdWd8ZDhgOCd5dxgNTB
+            +uRJRnE9OO0KTUSiQ1qGUaLxvP3RK2vQ6bX1zVcQeoBf1UVdrKxIcTBHdKATK5K+
+            F9AMwTdyhvAIJYHIILNPp4AucU/5UfYVMZTe2MQUmsZOUSYox8ujCipjF9RbAmF4
+            pazMVrcRE/T/zBsvatUCCJYfSwCcdxCP/7pc0vjHI7SIVA7Fffz5xsljAYHdgDj+
+            zOR3SI4yXD70d2EnIYBQ71iZ1q9uc0Mg5pJcjk6UJxltg+b2NtFKLkfP0dURe+sE
+            uWjX3W45IKvXYcll29Fd5f2SXU/WQTqGEpwVJ1biIQwx81pJ3xgn1TQLlK5fSj5Z
+            ytKdsYME/Xyy1MnKX6/Zb2t0HBejlmdYkWaU4N3OBYen/NXCcOztmW8nhba4l76s
+            EwGpL8kM2gnSmvtJok4LKyygrpRFbAmQO4lVr/vxx2eBaCogX2kFcuI8Ru4seMrI
+            fk/c/K1gam/cC78xPT1oybXfBYhATDWw/Ddu9PiO+myJ36o/SgFi8uZuOb9oNozS
+            XgHnfG0tDQr/34eOvEqfXRXWg/ikQr7DjffzFwsn4t8TNfPlan+f2h0fvw7Fmwyz
+            ETXSJwLxzx16lcZO/OIcxxdO/frqA6tvtbY9W2xDrSOIe9b1kpuejhIvZkOW5qE=
+            =51tC
+            -----END PGP MESSAGE-----
+          fp: F942FEAB63BC70D4EB077F7049F29CFCCDBC5E81
+        - created_at: "2026-04-10T11:19:40Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA4DbA6Kki7HvAQ/+IPwoxKYbto8OZHNaq4T9rrqhkT9CCYUpQ+HDifLABYSe
+            HgK1pTGQjSrIfnSK+E0cdQYSlXpcTQZ8xeRhferA/blM98HyaP0aZ5fQkhCn0X9c
+            SipE0aC8vz/TI4rR/JGKkKxDUDmkes2QIvPOK/wk7ThXcR6jsMHl6EJ4l/BaNVTG
+            EpCLoo0hRiSO2Jbp6gx3JV2RTAPUsuH3argjK42+M6Mdu5iqD0qOmqLTfsTS5n5Q
+            eHqKoZVjKD8dRzoFlTr6JAqAceOksdJxojSb6+j7Z0nME2idNPd0VjI6wAsVHH4p
+            NrHUx+Uac+fGTIprzF80RA6gKE7AP6SLyZOdcD5wf6r8dHDoh61iNX0kbaIvFz9K
+            zYPAfd4HMOWa4vrA6aOKwZCsZDEVzgsMqfUB2P9JKtsH6CkqGuOI1spp8sdW7nRo
+            Xv9sM3ts7Z4q7pYj2gpRc4ovFmMLMOxOxM51Jt2Xenlt5zq+kYJ9NTPMs2X+CyXg
+            7+8le7Tk1E30o88QGe7AsasM+u5bbq0HIYGXxB23RXtVB9ysIXU72wVo4pjDIp27
+            GZ9b+txmmFVRQpjb2EaYUH7U5MKcTb3FINYYORYN9Pe9cCNuB2TJP3yac0imdAKE
+            OwOJliD4KxKaZH/gTGIrbaZPvaWl8XRS8vp2sBCYDWUACpDjooLcVGgXbPSFgdTS
+            XgH9giDF+74tOHqE/Yo9DECZUPMIA88pzGR3JfWkSilvehPWsoTjgCesSCjIrvtK
+            CyVMf+rlG5cTrgeU+tt//0fqFqYHeAdYuHjnYIMwsDoVtS2lj+Gf1zf8lciHsdE=
+            =NFLb
+            -----END PGP MESSAGE-----
+          fp: 0A0CBE761EC356C5231DED073AE17C7FFF265E4C
+    encrypted_regex: ^(passwd)$
+    version: 3.9.4
