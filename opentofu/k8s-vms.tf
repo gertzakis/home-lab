@@ -19,7 +19,7 @@ resource "proxmox_vm_qemu" "kubernetes-masters" {
   name        = "k8s-master-0${count.index + 1}"
   description = "Kubernetes master node ${count.index + 1} \n\n IP `192.168.1.16${count.index}`"
   pool        = "k8s-cluster"
-  tags        = "k8s;master" # comma seperated format
+  tags        = "k8s;master" # semicolon separated format
 
   # VM OS Settings
   clone   = "ubuntu-k8s-tmpl-01"
@@ -94,7 +94,7 @@ resource "proxmox_vm_qemu" "kubernetes-workers" {
   name        = "k8s-worker-0${count.index + 1}"
   description = "Kubernetes worker node ${count.index + 1} \n\n IP `192.168.1.16${count.index + 3}`"
   pool        = "k8s-cluster"
-  tags        = "k8s;worker" # comma seperated format
+  tags        = "k8s;worker" # semicolon separated format
 
   # VM OS Settings
   clone   = "ubuntu-k8s-tmpl-01"
