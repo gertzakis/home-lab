@@ -2,6 +2,13 @@
 # ---
 # Create VMs cloned from a cloud-init template
 
+# Create a Proxmox pool for dev
+resource "proxmox_pool" "dev" {
+  poolid  = "dev"
+  comment = "Development VMs"
+}
+
+
 resource "proxmox_vm_qemu" "dev-vms" {
   # Create Dev nodes
   count = 1
