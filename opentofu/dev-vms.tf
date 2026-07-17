@@ -84,7 +84,7 @@ resource "proxmox_vm_qemu" "dev-vms" {
 }
 
 resource "proxmox_vm_qemu" "kubernetes-test-vms" {
-  count = 1
+  count = 2
   # vm_state = "stopped"
   # VM General Settings
   target_node = "proxmox-01"
