@@ -5,6 +5,19 @@ provider "registry.opentofu.org/telmate/proxmox" {
   version     = "3.0.2-rc07"
   constraints = "3.0.2-rc07"
   hashes = [
+    "h1:+oJwB1ImTF84OUPKAIqFx9x9FINiQO1XfnZWX0+BDBA=",
+    "h1:0UpRJ8PFsu9lhD3p2KUdUNVsDPbjZLPR46wYRpt1dxc=",
+    "h1:2OQl2xhdNTh55c3rGFgPI2tWZrNzIPHgoxj4ngCyWn4=",
+    "h1:LbxsCa0n8+0592VIkeYmvSr+7vvI1Jpod8bIx6ByeZY=",
+    "h1:OMfCyAFtAqAAc+6WYOvITUbjkwKFiYYH6l+qJOiF9dc=",
+    "h1:QA0V3UtDOvdfYU+62R7E8n5buRqhLwTXJI4kHnCe9vY=",
+    "h1:RkwyFjgLxwE//b0y5EsGBZmzREBcih4rXeFGC9IZm+A=",
+    "h1:gN+DYDp2WYMcLGmvoyBSd/S7vivh+b/k9D1uYFIk2js=",
+    "h1:ppQK1p8WY5N5NxDRjWgGHF+NqBcFzpzs2eoqNRe+A6E=",
+    "h1:t5xZHJW28qsdFoHKKbKMQBCcJsyrcDfu3Xod9ppUazU=",
+    "h1:tK2ydubCDvpkij1HmYOZ3b1aVI6AFIbTm/zj51ujqDg=",
+    "h1:tkx2SSrCghxYJqQ51O+1Tw1lSTOZ5+qMqTin285jSU0=",
+    "h1:yT0Utdw4n96LGlPFuj35smgsXPUqWx8q5no1z5D4ld0=",
     "h1:zp5hpQJQ4t4zROSLqdltVpBO+Riy9VugtfFbpyTw1aM=",
     "zh:2ee860cd0a368b3eaa53f4a9ea46f16dab8a97929e813ea6ef55183f8112c2ca",
     "zh:415965fd915bae2040d7f79e45f64d6e3ae61149c10114efeac1b34687d7296c",
