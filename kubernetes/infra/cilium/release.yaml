@@ -12,14 +12,14 @@ spec:
     spec:
       chart: cilium
       # pin version to auto-update only minor releases
-      version: ">=1.19.8 <1.20.0"
+      version: ">=1.20.2 <1.21.0"
       sourceRef:
         kind: HelmRepository
         name: cilium
         namespace: flux-system
       interval: 10m
   values:
-    upgradeCompatibility: "1.18"
+    upgradeCompatibility: "1.19"
     hubble:
       relay:
         enabled: true
