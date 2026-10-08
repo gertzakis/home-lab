@@ -7,10 +7,16 @@ metadata:
   namespace: monitoring
 spec:
   interval: 20m
+  timeout: 15m
+  # Keep the prometheus-operator CRDs in sync with the chart (Flux default "Create" never upgrades them)
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: "81.x.x"
+      version: "92.x.x"
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
