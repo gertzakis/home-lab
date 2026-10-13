@@ -6,9 +6,13 @@ metadata:
   namespace: falco
 spec:
   interval: 20m
+  # DaemonSet rollout across 4 nodes takes ~6m, longer than the 5m default
+  timeout: 15m
   chart:
     spec:
       chart: falco
+      # pin major version: chart majors carry breaking changes
+      version: ">=9.2.0 <10.0.0"
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
