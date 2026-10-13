@@ -36,6 +36,17 @@ spec:
         hosts:
           - prometheus.home.lab
       prometheusSpec:
+        # Persist the TSDB on Longhorn, the default volume is emptyDir and is deleted whenever the pod is recreated
+        retention: 14d
+        retentionSize: 5GB  # limit below the PVC size
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 6Gi
         podMonitorNamespaceSelector: { }
         podMonitorSelector:
           matchLabels:
